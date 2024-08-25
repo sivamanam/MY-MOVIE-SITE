@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <span id="locationSymbol" onclick="showSelectionFields()" style="cursor: pointer;">📍</span>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <div style="height: 250px; width: 160px;">
+            <table>
+                <tr>
+                    <td>SELECT THE COUNTRY</td>
+                    <td><select id="country" onchange="countryselect()">
+                        <option>select the country</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>SELECT THE STATE</td>
+                    <td><select id="state" onchange="stateselect()">
+                        <option>select the state</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>SELECT THE CITY</td>
+                    <td><select id="city" onchange="cityselect()">
+                        <option>select the city</option>
+                    </select></td>
+                </tr>
+            </table>
+        </div>
+        <button onclick="displaySelectedCity()">Submit</button>
+    </div>
+
+    <script>
+        var selectedcountry;
+        var selectedstate;
+        var selectedcity;
+        var headers = new Headers();
+        headers.append("X-CSCAPI-KEY", "Y2pNanZtZm5rSWcwUVlFSDc0OXdLR24wRTQ0U3RGQ0NiRTlPbnhWcQ==");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: headers,
+            redirect: 'follow'
+        };
+        fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+            .then(x => x.json())
+            .then(y => {
+                z = document.getElementById("country");
+                y.forEach(element => {
+                    var option = new Option(element.iso2 + " " + element.name);
+                    z.append(option);
+                });
+            });
+
+        function countryselect() {
+            document.getElementById("state").innerHTML = "select the state";
+            selectedcountry = document.getElementById("country").value;
+            fetch(`https://api.countrystatecity.in/v1/countries/${selectedcountry.substring(0, 2)}/states`, requestOptions)
+                .then(x => x.json())
+                .then(y => {
+                    z = document.getElementById("state");
+                    y.forEach(element => {
+                        var option = new Option(element.iso2 + " " + element.name);
+                        z.append(option);
+                    });
+                });
+        }
+
+        function stateselect() {
+            document.getElementById("city").innerHTML = "select the city";
+            selectedstate = document.getElementById("state").value;
+            fetch(`https://api.countrystatecity.in/v1/countries/${selectedcountry.substring(0, 2)}/states/${selectedstate.substring(0, 2)}/cities`, requestOptions)
+                .then(x => x.json())
+                .then(y => {
+                    z = document.getElementById("city");
+                    y.forEach(element => {
+                        var option = new Option(element.name);
+                        z.append(option);
+                    });
+                });
+        }
+
+        function cityselect() {
+            selectedcity = document.getElementById("city").value;
+            console.log(selectedcity);
+        }
+
+        function showSelectionFields() {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function displaySelectedCity() {
+            var selectedCityElement = document.getElementById("selectedCity");
+            selectedCityElement.innerText = "Selected City: " + selectedcity;
+            selectedCityElement.style.display = "inline";
+            hidePopup();
+        }
+
+        function hidePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>

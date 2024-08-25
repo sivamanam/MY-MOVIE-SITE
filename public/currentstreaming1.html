@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial,sans-serif;
+            display: flex;
+            background-repeat: no-repeat;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg");
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            height: 500px;
+            width: 1000px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         }
+
+        .poster {
+            flex: 1;
+            margin-right: 20px;
+            width:600px;
+            height: 500px;
+        }
+        .poster img {
+            width:400px;
+            height: 500px;
+            border-radius: 5px;
+        }
+        .details {
+            /* flex: 1; */
+            display: flex;
+            flex-direction: column;
+            font-size:25px;
+        }
+        .director,.hero,.heroine,.music,.fights,.coreography {
+            margin-bottom: 20px;
+        }
+        .btn {
+            border: 5px solid #00abf0;
+            border-radius: 25px;
+            text-align: center;
+            margin: auto;
+            padding: 7px;
+            background-color: black;
+            color: #00abf0;
+        }
+        .btn:hover  {
+            color: black;
+            background-color: #00abf0;
+            border: 5px solid black;
+        }
+        .a-tag {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="poster" id="poster">
+            <img src="" alt="Movie Poster">
+        </div>
+        <div class="details">
+            <h1  id="movieTitle">Movie Title</h1>
+            <div id="director" class="director">Director: </div>
+            <div id="hero" class="hero">Hero: </div>
+            <div id="heroine" class="heroine">Heroine: </div>
+            <div id="music" class="music">Music: </div>
+            <div id="fights" class="fights">Fights: </div>
+            <div id="choreography" class="choreography">Choreography: </div>
+            <div id="button" class="btn"><a href="" class="a-tag" id="a-tag">BOOK NOW</div>
+        </div>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        // Retrieve movie ID from URL
+        var cineId = getUrlParameter('id');
+
+        // Define movie details based on movie ID
+        var movieDetails = {
+            'cine1': {
+                'title': 'DAMSEL',
+                'director': 'Juan Carlos Fresnadillo',
+                'hero': 'Lord Bayford',
+                'heroine': 'Millie Bobby Brown',
+                'music': 'David Fleming',
+                'fights': 'Ray Winstone',
+                'choreography': 'Joe Roth',
+                'a-tag':'book.html',
+                'poster': 'https://image.tmdb.org/t/p/original/neil20KXNhdctwdoyZdVFm7Fwq0.jpg'
+            },
+            'cine2': {
+                'title': 'IRISH WISH',
+                'director': 'Janeen Damian',
+                'hero': 'Paul Kennedy',
+                'heroine': 'Lindsay Lohan',
+                'music': 'Nathan Lanier',
+                'fights': 'James Thomas',
+                'choreography': 'Ed Speleers',
+                'a-tag':'book.html',
+                'poster': 'https://pbs.twimg.com/media/GI_0ZQOW0AAC1Lx.jpg'
+            },
+            'cine3': {
+                'title': 'OPPENHEIMER',
+                'director': 'Christopher Nolan',
+                'hero': 'Cillian Murphy ',
+                'heroine': 'Florence Pugh',
+                'music': 'Ludwig Goransson',
+                'fights': 'Bloodsport',
+                'choreography': 'Center Stage',
+                'a-tag':'book.html',
+                'poster': 'https://www.hollywoodreporter.com/wp-content/uploads/2022/07/Oppenheimer-Movie-Poster-Universal-Publicity-EMBED-2022-.jpg?w=1000'
+            },
+            'cine4': {
+                'title': 'TILLU SQUARE',
+                'director': 'Mallik Ram',
+                'hero': 'Siddu Jonnalagadda',
+                'heroine': 'Anupama Parameswaran',
+                'music': 'Ram Miriyala',
+                'fights': 'Ram Lakshman',
+                'choreography': 'Sudharshan',
+                'a-tag':'book.html',
+                'poster': 'https://m.media-amazon.com/images/M/MV5BMjgzNzU5MmQtOWI3Yi00OWU2LWI0MmItNThjOTdlYzU0ZmNlXkEyXkFqcGdeQXVyMTIyMjMzODUx._V1_.jpg'
+            },
+            'cine5': {
+                'title': 'SHAITAAN',
+                'director': 'Bejoy Nambiar',
+                'hero': 'Ajay Devgn',
+                'heroine': 'Anngad Raaj',
+                'music': 'Amit Trivedi',
+                'fights': 'Vikram Dharma',
+                'choreography': 'Saroj Khan',
+                'a-tag':'book.html',
+                'poster': 'https://m.media-amazon.com/images/M/MV5BMzQwYmYyOWQtNTkyOS00ZjJiLWExMGEtYjdmNTIxNjliNDBiXkEyXkFqcGdeQXVyODgzMzg2MDg@._V1_.jpg'
+            },
+            'cine6': {
+                'title': 'YODHA',
+                'director': 'Sagar Ambre',
+                'hero': 'Sidharth Malhotra',
+                'heroine': 'Disha Patani',
+                'music': 'Sangeeth Sivan',
+                'fights': 'Melroy Disilva',
+                'choreography': 'Craig Macrae',
+                'a-tag':'book.html',
+                'poster': 'https://m.media-amazon.com/images/M/MV5BMDdlODdmODItZDAxNi00MjExLWFjOGItMGY3MzFjYzU4NDM3XkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_.jpg'
+            },
+            'cine7': {
+                'title': 'GHOSTBUSTERS',
+                'director': 'Jason Reitman',
+                'hero': 'Peter Venkman',
+                'heroine': 'Sigourney Weaver',
+                'music': 'Mik Old Field',
+                'fights': 'Blatty',
+                'coreography': 'Linda Dlair',
+                'a-tag':'book.html',
+                'poster': 'https://external-preview.redd.it/new-posters-for-ghostbusters-frozen-empire-v0-I8FDRoQNStr7L875KvKSjyYsGCkALTlZVa3YaZIvim8.jpg?auto=webp&s=d7904fb9592c2690fda013a20f8d5d10895274ca'
+            },
+            'cine8': {
+                'title': 'HARI HARA VEERAMALLU',
+                'director': 'Krish Jagarlamudi',
+                'hero': 'Pawan Kalyan',
+                'heroine': 'Nidhhi Agerwal',
+                'music': 'M.M.Keeravani',
+                'fights': 'Sham Kaushal',
+                'choreography': 'Bhanu',
+                'a-tag':'book.html',
+                'poster': 'https://images.news18.com/ibnlive/uploads/2022/09/pawan-kalyan-hari-hara-veeramallu-poster-d-1.jpg'
+            },
+            'cine9': {
+                'title': 'DEVARA',
+                'director': 'Koratala Siva',
+                'hero': 'N.T.Rama Rao',
+                'heroine': 'Janhvi Kapoor',
+                'music': 'Anirudh Ravichander',
+                'fights': 'Irfan Khan',
+                'choreography': 'Raju Sundaram',
+                'a-tag':'book.html',
+                'poster': 'https://m.media-amazon.com/images/M/MV5BYmYyYzZkZTEtOGNjYy00ZWUyLWFiYzYtYjViMzU1ZDk4ODhiXkEyXkFqcGdeQXVyNzI4NjYyMzk@._V1_.jpg'
+            },
+            'cine10': {
+                'title': 'FURIOSA',
+                'director': 'George Miller',
+                'hero': 'Chris Hemsworth',
+                'heroine': 'Anya Taylor',
+                'music': 'Tom Holkenborg',
+                'fights': 'Chris Anderson',
+                'choreography': 'Tomie French',
+                'a-tag':'book.html',
+                'poster': 'https://assets.gadgets360cdn.com/pricee/assets/product/202312/Furiosa_poster_1701410187.jpg'
+            },
+            'cine11': {
+                'title': 'MAIN LADEGA',
+                'director': 'Gaurav Rana',
+                'hero': 'Akash Pratap Singh',
+                'heroine': 'Vallari Viraj',
+                'music': 'Gibson George',
+                'fights': 'Melroy Disilva',
+                'choreography': 'Ankit Joe',
+                'a-tag':'book.html',
+                'poster': 'https://assets-in.bmscdn.com/discovery-catalog/events/et00394336-fxbujyyvug-landscape.jpg'
+            },
+            'cine12': {
+                'title': 'Bhool Bhulaiyaa 3',
+                'director': 'Anees Bazmee',
+                'hero': 'Karthik Aaryan',
+                'heroine': 'Triptii Dimri',
+                'music': 'Charlie Clouser',
+                'fights': 'Mary Shaw',
+                'choreography': 'Larry',
+                'a-tag':'book.html',
+                'poster': 'https://i.ytimg.com/vi/mK1jBei3Z_w/maxresdefault.jpg'
+            },
+            'cine13': {
+                'title': 'THE BEEKEEPER',
+                'director': 'David Ayer',
+                'hero': 'Jason Statham',
+                'heroine': 'Emmy Raver-Lampman',
+                'music': 'David Sardy',
+                'fights': 'Captain Spaulding',
+                'choreography': 'Sheri Moon Zombie',
+                'a-tag':'book.html',
+                'poster': 'https://m.media-amazon.com/images/M/MV5BZjQwYjU3OTYtMWVhMi00N2Y2LWEzMDgtMzViN2U4NWI1NmI3XkEyXkFqcGdeQXVyODk2NDQ3MTA@._V1_.jpg'
+            },
+            'cine14': {
+                'title': 'KONCHEM HATKE',
+                'director': 'Avinash Kumar',
+                'hero': 'Guru Charan',
+                'heroine': 'Krishna Manjusha',
+                'music': 'K.M.Radhakrishnan',
+                'fights': 'Silva',
+                'choreography': 'Ahmed Khan',
+                'a-tag':'book.html',
+                'poster': 'https://www.businessoftollywood.com/wp-content/uploads/2024/02/konchem-hatke-1.jpg'
+            }
+        };
+
+        // Update movie details based on movie ID
+        document.getElementById('movieTitle').innerText = movieDetails[cineId].title;
+        document.getElementById('director').innerText += movieDetails[cineId].director;
+        document.getElementById('hero').innerText += movieDetails[cineId].hero;
+        document.getElementById('heroine').innerText += movieDetails[cineId].heroine;
+        document.getElementById('music').innerText += movieDetails[cineId].music;
+        document.getElementById('fights').innerText += movieDetails[cineId].fights;
+        document.getElementById('choreography').innerText += movieDetails[cineId].choreography;
+        document.getElementById('a-tag').href = movieDetails[cineId]['a-tag'];
+
+        // Update movie poster
+        document.querySelector('#poster img').src = movieDetails[cineId].poster;
+    </script>
+</body>
+</html>

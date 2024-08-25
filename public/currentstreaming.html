@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: minmax(200px, auto);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .grid-item {
+            overflow: hidden;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item" onclick="redirectToWatch('cine1')">
+            <img src="https://image.tmdb.org/t/p/original/neil20KXNhdctwdoyZdVFm7Fwq0.jpg" alt="Cine 1 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine2')">
+            <img src ="https://lh3.googleusercontent.com/proxy/8p3kh2V7wtkSvYyZ1V-hCikoaxRtiEymXz7DevtuolLzAcDdD8ymuH4dh3fTjt4zGb14UY1K73n1RBpQJVNxQxeOId2oKBudQsf3BA" alt="Cine 2 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine3')">
+            <img src ="https://www.hollywoodreporter.com/wp-content/uploads/2022/07/Oppenheimer-Movie-Poster-Universal-Publicity-EMBED-2022-.jpg?w=1000" alt="Cine 3 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine4')">
+            <img src ="https://m.media-amazon.com/images/M/MV5BMjgzNzU5MmQtOWI3Yi00OWU2LWI0MmItNThjOTdlYzU0ZmNlXkEyXkFqcGdeQXVyMTIyMjMzODUx._V1_.jpg" alt="Cine 4 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine5')">
+            <img src ="https://m.media-amazon.com/images/M/MV5BMzQwYmYyOWQtNTkyOS00ZjJiLWExMGEtYjdmNTIxNjliNDBiXkEyXkFqcGdeQXVyODgzMzg2MDg@._V1_.jpg" alt="Cine 5 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine6')">
+            <img src ="https://m.media-amazon.com/images/M/MV5BMDdlODdmODItZDAxNi00MjExLWFjOGItMGY3MzFjYzU4NDM3XkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_.jpg" alt="Cine 6 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine7')">
+            <img src ="https://external-preview.redd.it/new-posters-for-ghostbusters-frozen-empire-v0-I8FDRoQNStr7L875KvKSjyYsGCkALTlZVa3YaZIvim8.jpg?auto=webp&s=d7904fb9592c2690fda013a20f8d5d10895274ca" alt="Cine 7 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine8')">
+            <img src ="https://images.news18.com/ibnlive/uploads/2022/09/pawan-kalyan-hari-hara-veeramallu-poster-d-1.jpg" alt="Cine 8 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine9')">
+            <img src ="https://m.media-amazon.com/images/M/MV5BYmYyYzZkZTEtOGNjYy00ZWUyLWFiYzYtYjViMzU1ZDk4ODhiXkEyXkFqcGdeQXVyNzI4NjYyMzk@._V1_.jpg" alt="Cine 9 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine10')">
+            <img src ="https://assets.gadgets360cdn.com/pricee/assets/product/202312/Furiosa_poster_1701410187.jpg" alt="Cine 10 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine11')">
+            <img src ="https://assets-in.bmscdn.com/discovery-catalog/events/et00394336-fxbujyyvug-landscape.jpg" alt="Cine 11 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine12')">
+            <img src ="https://i.ytimg.com/vi/mK1jBei3Z_w/maxresdefault.jpg" alt="Cine 12 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine13')">
+            <img src ="https://m.media-amazon.com/images/M/MV5BZjQwYjU3OTYtMWVhMi00N2Y2LWEzMDgtMzViN2U4NWI1NmI3XkEyXkFqcGdeQXVyODk2NDQ3MTA@._V1_.jpg" alt="Cine 13 Poster">
+        </div>
+        <div class="grid-item" onclick="redirectToWatch('cine14')">
+            <img src ="https://www.businessoftollywood.com/wp-content/uploads/2024/02/konchem-hatke-1.jpg" alt="Cine 14 Poster">
+        </div>
+        </div>
+    </div>
+    <script>
+        function redirectToWatch(movieId) {
+            window.location.href = `currentstreaming1.html?id=${movieId}`;
+        }
+    </script>
+</body>
+</html>
